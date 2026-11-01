@@ -1,0 +1,9 @@
+# 本项目依赖（Python 3.12）
+# 安装：pip install -r requirements.txt
+#
+# 注意：ultralytics 会自动带上 torch / torchvision。
+# 如果你已经装了带 CUDA 的 torch，pip 会保留它（不会降级到 CPU 版）。
+
+ultralytics>=8.3.0        # YOLO 训练/推理框架
+opencv-python>=4.9.0      # 摄像头读取、绘图
+numpy>=1.24               # 数值计算（ultralytics 依赖，显式列出便于排查）

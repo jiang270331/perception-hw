@@ -1,0 +1,48 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# ---- 虚拟环境 ----
+.env
+.venv/
+venv/
+env/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# ---- 模型权重（首次运行会自动下载，不要提交）----
+*.pt
+*.pth
+*.onnx
+*.engine
+*.torchscript
+weights/
+runs/
+
+# ---- YOLO 运行产物 ----
+runs/
+predict*/
+*.jpg
+*.png
+!docs/*.jpg
+!docs/*.png
+
+# ---- 编辑器 ----
+.vscode/
+.idea/
+*.swp
+
+# ---- 系统 ----
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---- Jupyter ----
+.ipynb_checkpoints/
+
+# ---- 其他 ----
+*.log
