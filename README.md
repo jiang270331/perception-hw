@@ -122,9 +122,20 @@ python src/detect.py --no-display --save docs/screenshot.jpg
 
 ## 5. 运行效果
 
-见上面那张图（`docs/screenshot.jpg`）。那次检测到 8 个物体：3 个 `person`（置信度 0.72 / 0.71 / 0.31）、2 个 `tv`（0.35）、1 个 `laptop`（0.52）。
+见上面那张图（`docs/screenshot.jpg`）。那是用 Ultralytics 官方的标准测试图
+（`bus.jpg`，一张街景照片）跑出来的：
 
-平均帧率（本机实测，640×480 输入、640 推理分辨率、yolo11n）：
+```bash
+python src/detect.py --source path/to/bus.jpg --no-display --save docs/screenshot.jpg
+```
+
+检测到 6 个物体：`bus 0.94`、`person 0.88 / 0.86 / 0.82 / 0.63`。
+
+**为什么用这张图而不是摄像头截图**：摄像头实拍会拍到私人环境，不适合放进公开仓库。
+摄像头模式的代码路径和这张图完全一样 —— 只是输入源从文件换成 `cv2.VideoCapture(0)`，
+本地跑 `python src/detect.py` 就能复现同样的效果。
+
+平均帧率（本机实测，摄像头 640×480 输入、640 推理分辨率、yolo11n）：
 
 | 设备 | FPS |
 | --- | ---: |

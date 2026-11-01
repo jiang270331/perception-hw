@@ -5,6 +5,30 @@
 
 ---
 
+## 〇、编辑器配置（任务第 1 项）
+
+任务文档原文：「尚未安装的同学请安装 VS Code；**已经习惯其他编辑器的同学也可以继续使用**。」
+
+本机用的是 **Cursor**（VS Code 的衍生版，内核相同，扩展市场通用），所以没有另装 VS Code。
+
+配置和验证：
+
+| 项 | 值 |
+| --- | --- |
+| 编辑器 | Cursor |
+| 打开的项目 | `perception-hw`（File → Open Folder） |
+| Python 解释器 | `D:\world-model-lab\env\python.exe`（Anaconda，Python 3.12.15） |
+| 已装扩展 | Python（自带）、Pylance（自带） |
+| 验证方式 | 在 Cursor 里运行 `src/detect.py`，能打开摄像头并正常检测 |
+
+**★ 关键：确认「所选解释器」和「项目实际用的环境」一致。**
+
+如果选错了（比如选到系统 Python 或者别的 conda 环境），运行时会 `ModuleNotFoundError: No module named 'cv2'` —— 因为 `ultralytics` / `opencv` 只装在 `D:\world-model-lab\env` 里。
+
+查看/切换解释器：`Ctrl+Shift+P` → `Python: Select Interpreter` → 选上面那个路径。
+
+---
+
 ## 一、为什么不同项目要用独立环境
 
 **一句话：依赖是会「打架」的。**
