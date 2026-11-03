@@ -93,6 +93,7 @@ python src/detect.py --no-display --save docs/screenshot.jpg
 | `--source` | `0` | 摄像头索引，或视频文件路径 |
 | `--model` | `yolo11n.pt` | 模型权重。n 最快，s/m/l/x 更准但更慢 |
 | `--conf` | `0.25` | 置信度阈值。调高只留确定的，调低能看到更多（含误检） |
+| `--classes` | 全部类别 | 只显示逗号分隔的类别名（如 `person,bus`），名称区分大小写；不传时显示全部 80 类 |
 | `--imgsz` | `640` | 推理分辨率。降到 480/320 能显著提速 |
 | `--device` | 自动 | `0` = 第一块 GPU，`cpu` = 强制 CPU，不填 = 有 GPU 就用 |
 | `--no-display` | 关 | 不开窗口（无 GUI 环境用） |

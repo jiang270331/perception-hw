@@ -36,6 +36,8 @@ def parse_args():
                    help="模型权重（yolo11n/s/m/l/x.pt，首次运行会自动下载）")
     p.add_argument("--conf", type=float, default=0.25,
                    help="置信度阈值（默认 0.25）")
+    p.add_argument("--classes", default=None,
+                   help="只显示指定类别，类别名用逗号分隔（如 person,bus）；默认显示全部类别")
     p.add_argument("--imgsz", type=int, default=640,
                    help="推理分辨率（默认 640，越小越快）")
     p.add_argument("--device", default=None,
@@ -75,6 +77,17 @@ def main():
     print("[1/3] 加载模型（首次运行会自动下载权重）...")
     t0 = time.time()
     model = YOLO(args.model)
+
+    classes = None
+    if args.classes is not None:
+        requested = [name.strip() for name in args.classes.split(",")]
+        name_to_id = {name: class_id for class_id, name in model.names.items()}
+        unknown = [name for name in requested if name not in name_to_id]
+        if unknown:
+            print(f"无效类别名: {', '.join(repr(name) for name in unknown)}")
+            print(f"可用类别: {', '.join(name_to_id)}")
+            return 1
+        classes = list(dict.fromkeys(name_to_id[name] for name in requested))
 
     # 设备选择：显式指定 > 自动（有 GPU 就用）
     import torch
@@ -122,6 +135,7 @@ def main():
             # 推理
             results = model.predict(frame, conf=args.conf,
                                     imgsz=args.imgsz, device=device,
+                                    classes=classes,
                                     verbose=False)
             r = results[0]
 
